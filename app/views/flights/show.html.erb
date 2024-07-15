@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    This flight info according to id 
+  </div>
+</div>
+<table class="table table-dark table-striped-columns">
+    <thead>
+        <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td><%= @flight.source %></td>
+                <td><%= @flight.destination %></td>
+                <td><%= @flight.price %></td>
+            </tr>
+       
+    </tbody>
+</table>
