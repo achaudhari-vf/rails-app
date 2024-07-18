@@ -1,16 +1,16 @@
 <h1>EDIT  flight data</h1>
 
-<% if @flights.errors.any? %>
+<% if @flight.errors.any? %>
   <h2>The following errors prevented the article from being saved</h2> 
   <ul> 
-    <% @flights.errors.full_messages.each do |msg| %> 
+    <% @flight.errors.full_messages.each do |msg| %> 
       <li><%= msg %></li> 
     <% end %> 
   </ul>
 
 <% end %>
 
-<%= form_with(model: @flights, local: true) do |f| %>
+<%= form_with(model: @flight, local: true) do |f| %>
     <p> 
     <%= f.label :source %><br/> 
     <%= f.text_field :source %>

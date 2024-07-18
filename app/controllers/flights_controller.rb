@@ -8,22 +8,24 @@ class FlightsController < ApplicationController
     end
 
     def show
-        @flights = Flight.find(params[:id])
+        @flight = Flight.find(params[:id])
     end
 
     def new
-        @flights = Flight.new
+        @flight = Flight.new
     end
 
     def edit
-        @flights = Flight.find(params[:id])
+        @flight = Flight.find(params[:id])
     end
 
     def create
-        @flights = Flight.new(params.require(:flights).permit(:source, :destination, :price, :depart_date))
+        @flight = Flight.new(params.require(:flights).permit(:source, :destination, :price, :depart_date))
+        @flight.user = User.first # <--- Add this line
+
         
-        if @flights.save
-            redirect_to @flights
+        if @flight.save
+            redirect_to @flight
             flash[:notice] = "Flight was created successfully."
         else
             render 'new'
