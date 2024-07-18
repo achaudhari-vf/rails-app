@@ -1,6 +1,33 @@
+<%= render 'layouts/navigation' %>
+
 <h1>All Flights</h1>
 
+
 <%= button_to 'ADD Flight', new_flight_path , method: :get %>
+<% @flights.each do |flight| %>
+<div class="row justify-content-md-center">
+<div class="col-8">
+    <div class="card text-center shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-header">
+        by <%= flight.user.name if flight.user%>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Flight Details</h5>
+        <p class="card-text">From : <%= flight.source %></p>
+        <p class="card-text">To : <%= flight.destination %></p>
+        <a href="#" class="btn btn-primary">Book Now</a>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button">Delete</button>
+            <button class="btn btn-primary" type="button">Edit</button>
+        </div>
+    </div>
+    </div>
+    </div>
+  <% end %>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
 
 <table class="table table-dark table-striped-columns">
     <thead>
