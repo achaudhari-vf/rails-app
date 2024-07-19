@@ -1,0 +1,26 @@
+<h1>This is edit page</h1>
+
+<%= render 'error' %>
+
+
+
+
+<%= form_with(model: @user, local: true) do |f| %>
+    <p> 
+    <%= f.label :name %><br/> 
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br/> 
+    <%= f.text_field :email %> 
+  </p>
+  <p>
+    <%= f.label :password %><br/>
+    <%= f.password_field  :pasword %>  
+
+  </p>
+  
+  <p>
+    <%= f.submit %> 
+  </p>
+<% end %>

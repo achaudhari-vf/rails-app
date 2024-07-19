@@ -1,0 +1,36 @@
+<div class="container">
+
+    <p><%= @user.name %></p>
+    <p><%= @user.email %></p>
+    <table class="table table-dark table-striped-columns">
+    <thead>
+        <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Price</th>
+            <th>Depart_date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <% @flights.each do |flight| %>
+            <tr>
+                <td><%= flight.source %></td>
+                <td><%= flight.destination %></td>
+                <td><%= flight.price %></td>
+                <td><%= flight.depart_date %></td>
+                <td>
+                    <%= button_to 'Edit', edit_flight_path(flight), method: :get %>
+                    <%= button_to 'delete', flight_path(flight), method: :delete %>
+
+
+
+                
+                </td>
+                </tr>
+        <% end %>
+    </tbody>
+
+</div>
