@@ -1,34 +1,51 @@
+<%= render 'pages/navbar' %>
 <h1>All Flights</h1>
 
 <%= button_to 'ADD Flight', new_flight_path , method: :get %>
-
-<table class="table table-dark table-striped-columns">
-    <thead>
-        <tr>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Price</th>
-            <th>Depart_date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @flights.each do |flight| %>
-            <tr>
-                <td><%= flight.source %></td>
-                <td><%= flight.destination %></td>
-                <td><%= flight.price %></td>
-                <td><%= flight.depart_date %></td>
-                <td>
-                    <%= button_to 'Edit', edit_flight_path(flight), method: :get %>
-                    <%= button_to 'delete', flight_path(flight), method: :delete %>
-
+<div class="row">
+  <div class="col-sm-6">
+        <div class="card text-center ">
+            
 
 
                 
-                </td>
-                </tr>
-        <% end %>
-    </tbody>
-</table>
+                    <% @flights.each do |flight| %>
+                        <div class="card-header">
+                       Flight by <%= flight.user.name %>
+                        </div>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">From :- <%= flight.source %> </p>
+                            <p class="card-text">Destination : -  <%= flight.destination %></p>
+                            <p class="card-text">Date :- <%= flight.depart_date %></p>
+                            <p class="card-text">Price :-  <%= flight.price %></p>
+                            <a href="#" class="btn btn-primary">Book Now !!</a>
+                        </div>
+                            <%= button_to 'Edit', edit_flight_path(flight), method: :get %>
+                            <%= button_to 'delete', flight_path(flight), method: :delete %>
+
+
+                        
+                            
+                            
+                        
+                            
+                            
+                                
+
+
+
+                            
+                            
+                    <% end %>
+                    
+            
+            
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            
+        
+        </div>
+    </div>
+</div>
+            
+

@@ -3,7 +3,7 @@ class FlightsController < ApplicationController
     # before_action: load_flight
 
     def index
-        @flights =Flight.all
+        @flights = Flight.includes(:user).all
 
     end
 
