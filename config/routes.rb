@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :flights
   get 'about', to:'pages#about'
   get 'signup', to: 'users#new'
+  
 
   resources :users, :except => [:new]
 end

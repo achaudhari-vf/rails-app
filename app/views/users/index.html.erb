@@ -1,1 +1,28 @@
-<h1>This is index page</h1>
+<%= render 'pages/navbar' %>
+<h1 class="text-center my-4">All Users</h1>
+
+<div class="d-flex justify-content-center mb-4">
+  <%= button_to 'ADD User', signup_url, method: :get, class: 'btn btn-primary' %>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <% @users.each do |user| %>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="card text-center" style="width: 100%; height: auto; border: 1px solid #ccc;">
+          
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">From: <%= user.name %></p>
+            <p class="card-text">Destination: <%= user.email %></p>
+            
+          </div>
+          <div class="card-footer">
+            <%= button_to 'Edit', edit_user_path(user), method: :get, class: 'btn btn-secondary' %>
+            <%= button_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

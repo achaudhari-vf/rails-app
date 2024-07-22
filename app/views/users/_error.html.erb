@@ -1,9 +1,12 @@
-<div>
-    <% if @user.errors.any? %>
-      <ul>
+<div class="container my-5">
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">The following errors prevented the form from being saved:</h4>
+      <ul class="mb-0">
         <% @user.errors.full_messages.each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>

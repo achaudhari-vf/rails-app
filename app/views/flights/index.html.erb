@@ -1,51 +1,32 @@
 <%= render 'pages/navbar' %>
-<h1>All Flights</h1>
+<h1 class="text-center my-4">All Flights</h1>
 
-<%= button_to 'ADD Flight', new_flight_path , method: :get %>
-<div class="row">
-  <div class="col-sm-6">
-        <div class="card text-center ">
-            
-
-
-                
-                    <% @flights.each do |flight| %>
-                        <div class="card-header">
-                       Flight by <%= flight.user.name %>
-                        </div>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">From :- <%= flight.source %> </p>
-                            <p class="card-text">Destination : -  <%= flight.destination %></p>
-                            <p class="card-text">Date :- <%= flight.depart_date %></p>
-                            <p class="card-text">Price :-  <%= flight.price %></p>
-                            <a href="#" class="btn btn-primary">Book Now !!</a>
-                        </div>
-                            <%= button_to 'Edit', edit_flight_path(flight), method: :get %>
-                            <%= button_to 'delete', flight_path(flight), method: :delete %>
-
-
-                        
-                            
-                            
-                        
-                            
-                            
-                                
-
-
-
-                            
-                            
-                    <% end %>
-                    
-            
-            
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            
-        
-        </div>
-    </div>
+<div class="d-flex justify-content-center mb-4">
+  <%= button_to 'ADD User', new_flight_path, method: :get, class: 'btn btn-primary' %>
 </div>
-            
 
+<div class="container">
+  <div class="row justify-content-center">
+    <% @flights.each do |flight| %>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+        <div class="card text-center" style="width: 100%; height: auto; border: 1px solid #ccc;">
+          <div class="card-header">
+            Flight by <%= flight.user.name %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">From: <%= flight.source %></p>
+            <p class="card-text">Destination: <%= flight.destination %></p>
+            <p class="card-text">Date: <%= flight.depart_date %></p>
+            <p class="card-text">Price: <%= flight.price %></p>
+            <a href="#" class="btn btn-primary">Book Now !!</a>
+          </div>
+          <div class="card-footer">
+            <%= button_to 'Edit', edit_flight_path(flight), method: :get, class: 'btn btn-secondary' %>
+            <%= button_to 'Delete', flight_path(flight), method: :delete, class: 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
