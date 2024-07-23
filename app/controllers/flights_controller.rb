@@ -5,6 +5,8 @@ class FlightsController < ApplicationController
     def index
         @flights = Flight.includes(:user).all
 
+        
+
     end
 
     def show
@@ -21,7 +23,7 @@ class FlightsController < ApplicationController
 
     def create
         @flight = Flight.new(params.require(:flights).permit(:source, :destination, :price, :depart_date))
-        @flight.user = User.first # <--- Add this line
+        @flight.user = current_user # <--- Add this line
 
         
         if @flight.save

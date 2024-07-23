@@ -11,7 +11,8 @@ class UsersController < ApplicationController
 
 
         if @user.save
-            render 'index'
+            session[:user_id] = @user.id
+            redirect_to users_path
         else
             render 'new'
         end
@@ -51,5 +52,15 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @flights = @user.flights
     end
+    def destroy
+        @user = User.find(params[:id])
+        if @user.destroy
+          session[:user_id] = nil # Ensure the current_user session is cleared if the user being deleted is the current user
+          redirect_to users_path, notice: 'User was successfully deleted.'
+        else
+          redirect_to users_path, alert: 'Failed to delete the user.'
+        end
+      end
+      
 
 end
