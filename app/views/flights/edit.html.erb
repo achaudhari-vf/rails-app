@@ -1,7 +1,7 @@
 <%= render 'pages/navbar' %>
 
 <div class="container my-5">
-  <h1 class="text-center">EDIT Flight Data</h1>
+  
 
   <% if @flight.errors.any? %>
     <div class="alert alert-danger">
@@ -14,6 +14,8 @@
     </div>
   <% end %>
 
+<% if logged_in? && @flight.user == current_user %>
+  <h1 class="text-center">EDIT Flight Data</h1>
   <%= form_with(model: @flight, local: true, class: 'mt-4') do |f| %>
     <div class="mb-3">
       <%= f.label :source, class: 'form-label' %>
@@ -40,3 +42,6 @@
     </div>
   <% end %>
 </div>
+<%else %>
+      <%= render 'pages/intro' %>
+<% end %> 
