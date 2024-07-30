@@ -3,7 +3,10 @@
 module Api
     module V1
       class FlightsController < ApplicationController
+        before_action :authenticate_user!
+        
         # before_action :load_flight, only: [:show, :update, :destroy]
+        
   
         def index
           @flights = Flight.includes(:user).all
@@ -20,9 +23,8 @@ module Api
         end
   
         def create
-          byebug
           @flight = Flight.new(flight_params)
-          @flight.user = current_user
+          @flight.user = User.first
           if @flight.save
             render json: @flight, status: :created
           else
@@ -54,11 +56,9 @@ module Api
         def flight_params
           params.require(:flight).permit(:source, :destination, :price, :depart_date)
         end
+        
   
-        # Uncomment if needed for loading flight
-        # def load_flight
-        #   @flight = Flight.find(params[:id])
-        # end
+       
       end
     end
   end

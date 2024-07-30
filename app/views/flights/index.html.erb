@@ -1,9 +1,10 @@
 <%= render 'pages/navbar' %>
-<h1 class="text-center my-4">All Flights</h1>
-
-<div class="d-flex justify-content-center mb-4">
-  <%= link_to 'Add Flight', new_flight_path, class: 'btn btn-primary' %>
-</div>
+<h1 class="text-center my-4">All Flights listed by flight owners</h1>
+<% if logged_in? %>
+  <div class="d-flex justify-content-center mb-4">
+    <%= link_to 'Add Flights', new_flight_path, class: 'btn btn-primary' %>
+  </div>
+<% end %>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -18,7 +19,7 @@
             <p class="card-text">From: <%= flight.source %></p>
             <p class="card-text">Destination: <%= flight.destination %></p>
             <p class="card-text">Date: <%= flight.depart_date %></p>
-            <p class="card-text">Price: <%= flight.price %></p>
+            <p class="card-text">Price: <%= flight.price %> INR </p>
             <a href="#" class="btn btn-primary">Book Now !!</a>
           </div>
           <div class="card-footer d-flex justify-content-center">

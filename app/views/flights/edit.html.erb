@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-<% if logged_in? && @flight.user == current_user %>
+<% if logged_in? && (@flight.user == current_user || current_user.admin?) %>
   <h1 class="text-center">EDIT Flight Data</h1>
   <%= form_with(model: @flight, local: true, class: 'mt-4') do |f| %>
     <div class="mb-3">

@@ -8,23 +8,25 @@
 <div class="container">
   <div class="row justify-content-center">
     <% @users.each do |user| %>
-      <div class="col-12 mb-4 d-flex justify-content-center">
-        <div class="card text-center" style="width: 100%; max-width: 600px; border: 1px solid #ccc;">
-          <div class="card-body">
-            <h5 class="card-title">Flight Owner Details</h5>
-            <p class="card-text">Name of Organization: <%= user.name %></p>
-            <p class="card-text">Email of Organization: <%= user.email %></p>
-            <%= button_to 'Flights', user_path(user), method: :get, class: 'btn btn-success me-2' %>
+      <% if !user.admin? %>
+        <div class="col-12 mb-4 d-flex justify-content-center">
+          <div class="card text-center" style="width: 100%; max-width: 600px; border: 1px solid #ccc;">
+            <div class="card-body">
+              <h5 class="card-title">Flight Owner Details</h5>
+              <p class="card-text">Name of Organization: <%= user.name %></p>
+              <p class="card-text">Email of Organization: <%= user.email %></p>
+              <%= button_to 'Flights', user_path(user), method: :get, class: 'btn btn-success me-2' %>
 
-          </div>
-          <div class="card-footer d-flex justify-content-center">
-            <% if logged_in? && user == current_user %>
-              <%= button_to 'Edit', edit_user_path(user), method: :get, class: 'btn btn-secondary me-2' %>
-              <%= button_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger' %>
-            <% end %>
+            </div>
+            <div class="card-footer d-flex justify-content-center">
+              <% if logged_in? && (user == current_user || current_user.admin?) %>
+                <%= button_to 'Edit', edit_user_path(user), method: :get, class: 'btn btn-secondary me-2' %>
+                <%= button_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger' %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

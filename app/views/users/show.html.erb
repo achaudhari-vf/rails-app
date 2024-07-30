@@ -19,10 +19,10 @@
             <h5 class="card-title">Flight Details</h5>
             <p class="card-text"><strong>Source:</strong> <%= flight.source %></p>
             <p class="card-text"><strong>Destination:</strong> <%= flight.destination %></p>
-            <p class="card-text"><strong>Price:</strong> <%= flight.price %></p>
+            <p class="card-text"><strong>Price:</strong> <%= flight.price %> INR </p>
             <p class="card-text"><strong>Departure Date:</strong> <%= flight.depart_date %></p>
           </div>
-          <% if logged_in? && flight.user == current_user %>
+          <% if logged_in? && (flight.user == current_user || current_user.admin?) %>
             <div class="card-footer">
               <%= button_to 'Edit', edit_flight_path(flight), method: :get, class: 'btn btn-secondary me-2 mb-2' %>
               <%= button_to 'Delete', flight_path(flight), method: :delete, class: 'btn btn-danger mb-2' %>
